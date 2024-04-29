@@ -1,0 +1,21 @@
+defaults:
+  - _self_
+  - train_params: train_params_default
+  - mod_params: mod_params_default
+
+
+seed: 86
+mode: "predictive"
+logger: "logging"
+output_dir: "default"
+verb: 2
+subject: "iflp"
+task_name: null
+project_wandb: null
+name_wandb: null
+
+paths:
+  filename: iflp_smiles.csv
+  model_path: "repr_learn"
+  mix_dataset: null
+

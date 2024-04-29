@@ -1,0 +1,22 @@
+node_feature: "default"
+edge_feature: "default"
+kekulize: True
+with_hydrogen: True
+gnn_choice: "rgcn"
+hidden_size: 356
+num_head: 2
+num_layers_gnn: 4
+num_mlp_layer: 3
+mlp_dropout: 0.2
+readout: "sum"
+generative_model: "GraphAF"
+max_node: 0
+max_edge_unroll: 0
+num_flows: 12
+ssl_strategy: "am"
+mask_rate: 0.33
+k: 5
+r1: 4
+r2: 7
+num_negative: 1
+idx_loc: [[0,1], [0,1]]
