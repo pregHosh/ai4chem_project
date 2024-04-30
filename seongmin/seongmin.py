@@ -1,3 +1,4 @@
+pip install rdkit
 from rdkit import Chem
 import pandas as pd
 
