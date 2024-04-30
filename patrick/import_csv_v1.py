@@ -9,8 +9,7 @@ import time
 # Record the start time
 start_time = time.time()
 
-# Define a function that visualizes molecules from their SMILES string: Version 1, Using ChemDraw library
-
+# Define a function that visualizes molecules from their SMILES string
 def smiles_to_image(smiles):
     mol = Chem.MolFromSmiles(smiles)
     img = Draw.MolToImage(mol, size=(500, 500))
