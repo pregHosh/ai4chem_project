@@ -1,10 +1,11 @@
-
 from rdkit import Chem
+
 import pandas as pd
 from rdkit.Chem import PandasTools
 
-df = pd.read_csv("../data/iflp_dataset_ed_idxs.csv")
+df = pd.read_csv('../data/iflp_dataset_ed_idxs.csv')
 df.head()
+
 #PandasTools.AddMoleculeColumnToFrame(df, smilesCol='smiles', molCol='Molecule')
 #df.head()
 
