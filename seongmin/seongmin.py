@@ -3,7 +3,11 @@ from rdkit import Chem
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Draw
-from utils import plot_3d, plot_2d
+from rdkit.Chem import PandasTools
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
 
 
 df = pd.read_csv('../data/iflp_dataset_ed_idxs.csv')
@@ -25,4 +29,9 @@ def mol_valid(molecule):
 df['sanitize_flag']=df['mol'].apply(mol_valid)
 
 
-# Plot the FEHA and FEPA
+# Plot FEHA and FEPA
+sns.scatterplot(data=df, x='FEPA', y='FEHA')
+
+plt.title('FEPA vs FEHA')
+plt.xlabel('FEPA')
+plt.ylabel('FEHA')
