@@ -27,12 +27,17 @@ def mol_valid(molecule):
     return val
 
 df['sanitize_flag']=df['mol'].apply(mol_valid)
-print(df.head())
+
 
 # Plot FEHA and FEPA
 sns.scatterplot(data=df, x='FEPA', y='FEHA')
-
 plt.title('FEPA vs FEHA')
 plt.xlabel('FEPA')
 plt.ylabel('FEHA')
 plt.show()
+
+# Add FEPA/FEHA coulumn
+
+df['FEPA/FEHA']=df['FEPA']/df['FEHA']
+print(df.head())
+
