@@ -38,6 +38,7 @@ plt.show()
 
 # Add FEPA/FEHA coulumn
 
-df['FEPA/FEHA']=df['FEPA']/df['FEHA']
+df['FEPA_FEHA_ratio'] = np.where(df['FEHA'] != 0, df['FEPA'] / df['FEHA'], 'NA')
+
 print(df.head())
 
