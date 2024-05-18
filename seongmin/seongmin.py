@@ -3,7 +3,6 @@ from rdkit import Chem
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Draw
-from rdkit.Chem import PandasTools
 import seaborn as sns
 import matplotlib.pyplot as plt
 
