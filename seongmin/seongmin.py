@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 
 
 df = pd.read_csv('../data/iflp_dataset_ed_idxs.csv')
-df.head()
+df['mol']=df['smiles'].apply(Chem.MolFromSmiles)
+
 
 #PandasTools.AddMoleculeColumnToFrame(df, smilesCol='smiles', molCol='Molecule')
 #df.head()
@@ -25,8 +26,8 @@ def mol_valid(molecule):
         val = False
     return val
 
-#df['sanitize_flag']=df['mol'].apply(mol_valid)
-
+df['sanitize_flag']=df['mol'].apply(mol_valid)
+print(df.head())
 
 # Plot FEHA and FEPA
 sns.scatterplot(data=df, x='FEPA', y='FEHA')
