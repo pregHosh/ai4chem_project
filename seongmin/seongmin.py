@@ -5,7 +5,7 @@ from rdkit import Chem
 from rdkit.Chem import Draw
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 
 
