@@ -10,7 +10,7 @@ from hydra.core.config_store import ConfigStore
 from omegaconf import OmegaConf
 from torch import optim
 from torchdrug import core, models, tasks
-from iflp.dataset import IFLP_dataset_properties as dataset_properties
+from dataset import IFLP_dataset_properties as dataset_properties
 from config import inverse_design_home_config
 
 cs = ConfigStore.instance()
@@ -40,6 +40,25 @@ class iflp_proppred:
         logger: str = "logging",
     ) -> None:
 
+        """
+        Train a predictive GNN model 
+        
+        Parameters:
+        - hidden_dims (List[int]): Dimensions of the hidden layers.
+        - num_head (int): Number of heads in multi-head attention.
+        - readout (str): Readout method for the GNN.
+        - num_mlp_layer (int): Number of layers in the MLP.
+        - mlp_dropout (int): Dropout rate for the MLP.
+        - factor (float): Factor by which the learning rate will be reduced.
+        - patience (int): Number of epochs with no improvement after which learning rate will be reduced.
+        - min_lr (float): Minimum learning rate.
+        - train_ratio (float): Ratio of the dataset to be used for training. Default is 0.8.
+        - task_name (Optional[List[str]]): List of property names.
+
+        Returns:
+        float: The best validation loss achieved during training.
+        """
+        
         self.filename = filename
         self.node_feature = node_feature
         self.edge_feature = edge_feature
@@ -90,7 +109,6 @@ class iflp_proppred:
             hidden_dims=hidden_dims,
             readout=readout,
             num_head=num_head,
-            mode="supervise",
         )
         params = {
             "architecture": self.gnn_choice,
@@ -199,6 +217,23 @@ class iflp_proppred:
         train_ratio: float = 0.8,
         task_name: Optional[List[str]] = None,
     ):
+        """
+        Fine-tune a pre-trained GNN to a downstream task.
+
+        Parameters:
+        - model_path (str): Path to the pre-trained model.
+        - readout (str): Readout method for the GNN.
+        - num_mlp_layer (int): Number of layers in the MLP.
+        - mlp_dropout (int): Dropout rate for the MLP.
+        - factor (float): Factor by which the learning rate will be reduced.
+        - patience (int): Number of epochs with no improvement after which learning rate will be reduced.
+        - min_lr (float): Minimum learning rate.
+        - train_ratio (float): Ratio of the dataset to be used for training. Default is 0.8.
+        - task_name (Optional[List[str]]): List of task names.
+
+        Returns:
+        float: The best validation loss achieved during fine-tuning.
+        """
         hyperparam_path = os.path.join(model_path, "hyperparams.pkl")
 
         with open(hyperparam_path, "rb") as file:
@@ -343,7 +378,6 @@ class iflp_proppred:
         hidden_dims: List[int],
         readout: str,
         num_head,
-
     ):
         """
         Get the dataset and model
