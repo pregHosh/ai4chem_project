@@ -3,6 +3,11 @@
 
 The trained models can be found in "model" folder.
 
+## Installation
+
+```
+conda env create -f ai4chem.yml
+```
 ## Usages 
 
 To view all configurations, run the following command:
